@@ -21,7 +21,7 @@ Data map for the current implementation. Paths are repository-relative. The mod 
 
 | File | What it defines |
 |---|---|
-| `mod_info.json` | Id `interestingportraitspack`, name `Interesting Portraits Pack`, game `0.9.1a`. No `jars`, no `modPlugin`, no dependencies, not marked `utility`. Uses `#` comments, which the game's JSON loader accepts |
+| `mod_info.json` | Id `interestingportraitspack`, name `Interesting Portraits Pack`, game `0.98.5a-RC6`. No `jars`, no `modPlugin`, no dependencies, not marked `utility`. Uses `#` comments, which the game's JSON loader accepts |
 | `graphics/portraits/interesting_portrait_<group><nn>.png` | 375 portraits, 128x128. `<group>` is the faction the art was made for (`hegemony`, `league`, `diktat`, `luddicpath`, `ai` and so on), not a game faction id |
 | `data/world/factions/<faction id>.faction` | One file per vanilla faction, each holding only a `portraits` block |
 | `data/config/version/version_files.csv` | Registers `InterestingPortraitsPack.version` for Version Checker |
@@ -63,7 +63,15 @@ comm -23 /tmp/refs /tmp/files; comm -13 /tmp/refs /tmp/files
 
 ## Player faction
 
-`player.faction` lists nearly every portrait of the pack (197 male, 175 female) under `standard_male` and `standard_female`.
+`player.faction` lists nearly every portrait of the pack (197 male, 175 female) twice, with the same lists under both pairs of keys:
+
+| Keys | Read into | Used by |
+|---|---|---|
+| `player_male`, `player_female` | `FactionSpecAPI.getMalePortraitForNewGame()`, `getFemalePortraitForNewGame()` | The new game screen: the random first portrait and the portrait picker |
+| `standard_male`, `standard_female` | The player faction's random person picker | People generated for the player faction |
+
+- Since 0.98.5a the new game screen reads only `player_male` and `player_female` (checked in the `portraits` block of `com.fs.starfarer.loading.SpecStore` and the new game dialog classes, 0.98.5a-RC4). In 0.98a vanilla `player.faction` had only the `standard_` keys and the picker read those, so a pack with only `standard_` keys drops out of the picker on 0.98.5a.
+- Vanilla 0.98.5a keeps a smaller generic set under `standard_` and the full roster under `player_`. The mod keeps its full list under both, as in 0.98a. Remove a portrait from both pairs.
 
 ## Save data
 

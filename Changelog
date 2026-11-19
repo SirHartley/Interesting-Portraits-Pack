@@ -10,4 +10,6 @@ None
 
 1.3.a - UNRELEASED
 Added - Version Checker support
+Adjusted - Updated to Starsector 0.98.5a
+Fixed - Portraits show up in the new game portrait picker again
 Note - Delete the old Interesting Portraits Pack folder from mods before installing
