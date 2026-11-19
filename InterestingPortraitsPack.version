@@ -1,0 +1,12 @@
+{
+    "masterVersionFile":"https://raw.githubusercontent.com/SirHartley/Interesting-Portraits-Pack/master/InterestingPortraitsPack.version",
+    "modName":"Interesting Portraits Pack",
+    "modVersion":
+    {
+        "major":1,
+        "minor":3,
+        "patch":"a"
+    },
+    "directDownloadURL":"https://github.com/SirHartley/Interesting-Portraits-Pack/releases/download/1.3.a/Interesting.Portraits.Pack-1.3.a.zip",
+    "changelogURL":"https://raw.githubusercontent.com/SirHartley/Interesting-Portraits-Pack/refs/heads/master/Changelog",
+}
